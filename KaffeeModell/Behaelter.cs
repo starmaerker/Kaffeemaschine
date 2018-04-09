@@ -10,9 +10,9 @@ namespace KaffeeModell
     {
         #region Klassenvariablen (Felder)
 
-        public uint _volumen;
+        public int _volumen;
 
-        public uint _fuellstand;
+        public int _fuellstand;
 
 
         #endregion
@@ -25,7 +25,7 @@ namespace KaffeeModell
         /// <param name="menge">die einzufüllende Menge</param>
         /// <returns>die tatsächlich eingefüllte Menge</returns>
 
-        public uint Fuellen(uint menge)
+        public int Fuellen(int menge)
         {
             if (menge < _volumen - _fuellstand)
             {
@@ -34,7 +34,7 @@ namespace KaffeeModell
             }
             else
             {
-                uint eingefuellt = _volumen - _fuellstand;
+                int eingefuellt = _volumen - _fuellstand;
                 _fuellstand = _volumen;
                 return eingefuellt;
             }
@@ -44,9 +44,29 @@ namespace KaffeeModell
         /// Füllt den Behälter bis zum Rand
         /// </summary>
         /// <returns>die tatsächlich eingefüllte Menge</returns>
-        public uint Fuellen()
+        public int Fuellen()
         {
             return Fuellen(_volumen - _fuellstand);
+        }
+
+        public int Entnehmen(int menge)
+        {
+            if (menge < _fuellstand)
+            {
+                _fuellstand -= menge;
+
+                return menge;
+            }
+            else
+            {
+                return _fuellstand;
+            }
+        }
+
+        public int Entnehmen(string menge)
+        {
+            int mengeAlsInt = int.Parse(menge);
+            return Entnehmen(mengeAlsInt);
         }
            
 
