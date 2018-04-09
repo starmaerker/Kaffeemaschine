@@ -59,7 +59,10 @@ namespace KaffeeModell
             }
             else
             {
-                return _fuellstand;
+                var temp = _fuellstand;
+                _fuellstand = 0;
+
+                return temp;                
             }
         }
 
