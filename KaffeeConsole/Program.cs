@@ -11,35 +11,96 @@ namespace KaffeeConsole
     {
         static void Main(string[] args)
         {
+            Modul3Demos();
+            
+            //UserSettingsDemo();
+
+
             //todo Modul2 implementieren
-            Modul2Demos();
-            
-            
+            //Modul2Demos();
+
+
             Console.WriteLine();
             Console.Write("press any key to quit: ");
-            Console.ReadKey();            
-            
+            Console.ReadKey();
+
+        }
+
+        private static void Modul3Demos()
+        {
+            Behaelter wasserBehaelter = new Behaelter(Zutat.Wasser);
+            //wasserBehaelter.Typ = Zutat.Wasser; nicht möglich wegen Schreibschutz
+
+            //todo Ereignisbehandlung 5: Ereignis abonnieren
+            wasserBehaelter.BinLeer += Program.LeerstandAnzeigen;
+            //Langnotation: wasserBehaelter.BinLeer += new BinLeerEventHandler(Program.LeerstandAnzeigen);
+            Automat automat = new Automat();
+            wasserBehaelter.BinLeer += automat.Auffuellen;
+
+            wasserBehaelter.Fuellen();
+            wasserBehaelter.Entnehmen(150);
+
+            Console.WriteLine($"Aktueller Füllstand: {wasserBehaelter.Fuellstand} cl.");
+        }
+
+        //todo Ereignisbehandlung 4: Callback-Methode schreiben
+        private static void LeerstandAnzeigen(Behaelter sender, EventArgs e)
+        {
+            Console.WriteLine($"Behälter mit {sender.Typ} ist leer.");
+        }
+
+        private static void UserSettingsDemo()
+        {
+            Console.ForegroundColor = Properties.Settings.Default.ConsolenFarbe;
+
+            Console.WriteLine("Gewünschte Farbe: ");
+
+            string gewuenschteFarbe = Console.ReadLine();
+
+            if (Enum.TryParse(gewuenschteFarbe, out ConsoleColor farbe))
+            {
+                Console.ForegroundColor = farbe;
+                Properties.Settings.Default.ConsolenFarbe = farbe;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Console.WriteLine("Die Farbe gibt es nicht.");
+            }
         }
 
         private static void Modul2Demos()
         {
-            Behaelter behaelter = new Behaelter();
-            Console.WriteLine($"Eingefüllt wurden {behaelter.Fuellen(30)} cl");
-            behaelter._volumen = 100;
-            Console.WriteLine($"Eingefüllt wurden {behaelter.Fuellen(30)} cl");
-            Console.WriteLine($"Eingefüllt wurden {behaelter.Fuellen()} cl");
-            //Console.WriteLine($"Nach Entnahme sind noch {behaelter.Entnehmen(40)} cl vorhanden.");
-            //Console.WriteLine($"Nach Entnahme sind noch {behaelter.Entnehmen(70)} cl vorhanden.");
+            Behaelter behaelter = new Behaelter(Zutat.Wasser);
+            try
+            {
+                Console.WriteLine($"Eingefüllt wurden {behaelter.Fuellen(-30)} cl");
+                behaelter.Volumen = 100;
+                Console.WriteLine($"Eingefüllt wurden {behaelter.Fuellen(30)} cl");
+                Console.WriteLine($"Eingefüllt wurden {behaelter.Fuellen()} cl");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);                ;
+            }
 
             while (true)
             {
-                Console.Write("Entnehmen: ");
-                string input = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(input))
+                try
                 {
-                    break;
+                    Console.Write("Entnehmen: ");
+                    string input = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(input))
+                    {
+                        break;
+                    }
+                    Console.WriteLine($"Entnommen sind {behaelter.Entnehmen(input)} cl.");
                 }
-                Console.WriteLine($"Entnommen sind {behaelter.Entnehmen(input)} cl.");
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);                    
+                }
             }
         }
     }

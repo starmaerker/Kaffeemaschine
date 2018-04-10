@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaffeeConsole", "KaffeeCons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaffeeModell", "KaffeeModell\KaffeeModell.csproj", "{1F9CD4D9-91CF-446C-89E1-5B2EBC420595}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaffeeWpf", "KaffeeWpf\KaffeeWpf.csproj", "{2EFC87B8-1A28-4A44-907C-34CC67209DCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1F9CD4D9-91CF-446C-89E1-5B2EBC420595}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F9CD4D9-91CF-446C-89E1-5B2EBC420595}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F9CD4D9-91CF-446C-89E1-5B2EBC420595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EFC87B8-1A28-4A44-907C-34CC67209DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EFC87B8-1A28-4A44-907C-34CC67209DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EFC87B8-1A28-4A44-907C-34CC67209DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EFC87B8-1A28-4A44-907C-34CC67209DCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
