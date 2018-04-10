@@ -11,8 +11,10 @@ namespace KaffeeConsole
     {
         static void Main(string[] args)
         {
-            Modul3Demos();
-            
+            Modul4Demos();
+
+            //Modul3Demos();
+
             //UserSettingsDemo();
 
 
@@ -25,6 +27,30 @@ namespace KaffeeConsole
             Console.ReadKey();
 
         }
+
+        
+
+        private static void Modul4Demos()
+        {
+            Behaelter[] behaelterListe = new Behaelter[3];
+            behaelterListe[0] = new Behaelter(Zutat.Wasser, 200);
+            behaelterListe[1] = new Behaelter(Zutat.Kaffee, 100);
+            behaelterListe[2] = new Behaelter(Zutat.Milch, 150);
+
+            foreach (var item in behaelterListe)
+            {
+                Console.WriteLine($"{item.Volumen} cl {item.Typ}");
+            }
+
+            Array.Sort(behaelterListe);
+            Console.WriteLine("Nach der Sortierung.");
+
+            foreach (var item in behaelterListe)
+            {
+                Console.WriteLine($"{item.Volumen} cl {item.Typ}");
+            }
+        }
+
 
         private static void Modul3Demos()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KaffeeModell
 {
-    public class Behaelter
+    public class Behaelter : IComparable
     {
         #region Klassenvariablen (Felder) und Eingenschaften (Properties)
 
@@ -145,7 +145,13 @@ namespace KaffeeModell
                 throw new ArgumentOutOfRangeException(nameof(menge), menge, "Die zu entnehmende Menge muss als ganze Zahl angegeben werden.");  
             }
         }
-           
+
+        public int CompareTo(object obj)
+        {
+            Behaelter other = (Behaelter)obj;
+            return this.Volumen.CompareTo(other.Volumen);
+        }
+
 
         #endregion
     }
