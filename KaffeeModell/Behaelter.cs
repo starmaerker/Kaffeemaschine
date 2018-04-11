@@ -12,7 +12,7 @@ namespace KaffeeModell
 
         private int _volumen;
         private int _fuellstand;
-        private Zutat _typ;        
+        private Inhaltsstoff _typ;        
 
         public int Volumen
         {
@@ -26,7 +26,7 @@ namespace KaffeeModell
             private set { _fuellstand = value; }
         }
 
-        public Zutat Typ
+        public Inhaltsstoff Typ
         {
             get { return _typ; }
             private set { _typ = value; }
@@ -37,7 +37,7 @@ namespace KaffeeModell
 
         #region Kontruktoren
 
-        public Behaelter(Zutat typ, int volumen = 100)
+        public Behaelter(Inhaltsstoff typ, int volumen = 100)
         {
             this.Typ = typ;
             this.Volumen = volumen;
@@ -49,8 +49,8 @@ namespace KaffeeModell
 
         //todo Ereignisbehandlung 2: Ereignis deklarieren
         //event schränkt Zugriff auf invocation list ein
-        public event BinLeerEventHandler BinLeer;
-
+        public event BinLeerEventHandler  BinLeer;
+         
         #endregion
 
         #region Methoden

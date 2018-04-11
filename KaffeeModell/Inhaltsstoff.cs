@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace KaffeeModell
 {
-    public enum Zutat
+    public enum Inhaltsstoff
     {
-        Kaffee, Wasser, Milch, Kakao, Zucker
+        Kaffee,
+        Wasser,
+        Milch,
+        Kakao,
+        Zucker
     }
 }

@@ -32,16 +32,21 @@ namespace KaffeeConsole
 
         private static void Modul4Demos()
         {
+            Automat a1 = new Automat();
+            Console.WriteLine(a1.Zubereiten("Kakao"));
+            Console.WriteLine();
+
             Behaelter[] behaelterListe = new Behaelter[3];
-            behaelterListe[0] = new Behaelter(Zutat.Wasser, 200);
-            behaelterListe[1] = new Behaelter(Zutat.Kaffee, 100);
-            behaelterListe[2] = new Behaelter(Zutat.Milch, 150);
+            behaelterListe[0] = new Behaelter(Inhaltsstoff.Wasser, 200);
+            behaelterListe[1] = new Behaelter(Inhaltsstoff.Kaffee, 100);
+            behaelterListe[2] = new Behaelter(Inhaltsstoff.Milch, 150);
 
             foreach (var item in behaelterListe)
             {
                 Console.WriteLine($"{item.Volumen} cl {item.Typ}");
             }
 
+            Console.WriteLine();
             Array.Sort(behaelterListe);
             Console.WriteLine("Nach der Sortierung.");
 
@@ -54,7 +59,7 @@ namespace KaffeeConsole
 
         private static void Modul3Demos()
         {
-            Behaelter wasserBehaelter = new Behaelter(Zutat.Wasser);
+            Behaelter wasserBehaelter = new Behaelter(Inhaltsstoff.Wasser);
             //wasserBehaelter.Typ = Zutat.Wasser; nicht möglich wegen Schreibschutz
 
             //todo Ereignisbehandlung 5: Ereignis abonnieren
@@ -97,7 +102,7 @@ namespace KaffeeConsole
 
         private static void Modul2Demos()
         {
-            Behaelter behaelter = new Behaelter(Zutat.Wasser);
+            Behaelter behaelter = new Behaelter(Inhaltsstoff.Wasser);
             try
             {
                 Console.WriteLine($"Eingefüllt wurden {behaelter.Fuellen(-30)} cl");

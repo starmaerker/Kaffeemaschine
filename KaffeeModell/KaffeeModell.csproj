@@ -45,7 +45,8 @@
     <Compile Include="Behaelter.cs" />
     <Compile Include="BinLeerEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Zutat.cs" />
+    <Compile Include="Rezept.cs" />
+    <Compile Include="Inhaltsstoff.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
