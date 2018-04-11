@@ -57,6 +57,47 @@ namespace KaffeeModell
         {
             sender.Fuellen();
         }
+
+        public static Automat ErstelleStandardAutomat()
+        {
+            Automat a = new Automat();
+            a.BehaelterListe.Add(new Behaelter(Inhaltsstoff.Kaffee));
+            a.BehaelterListe.Add(new Behaelter(Inhaltsstoff.Kakao));
+            a.BehaelterListe.Add(new Behaelter(Inhaltsstoff.Milch));
+            a.BehaelterListe.Add(new Behaelter(Inhaltsstoff.Wasser));
+
+            Rezept r;
+
+            r = new Rezept("Kaffee");
+            r.ZutatenListe.Add(Inhaltsstoff.Wasser, 15);
+            r.ZutatenListe.Add(Inhaltsstoff.Kaffee, 5);
+            a.RezeptList.Add(r);
+
+            r = new Rezept("Milchkaffee");
+            r.ZutatenListe.Add(Inhaltsstoff.Wasser, 10);
+            r.ZutatenListe.Add(Inhaltsstoff.Kaffee, 5);
+            r.ZutatenListe.Add(Inhaltsstoff.Milch, 5);
+            a.RezeptList.Add(r);
+
+            r = new Rezept("Espresso");
+            r.ZutatenListe.Add(Inhaltsstoff.Wasser, 5);
+            r.ZutatenListe.Add(Inhaltsstoff.Kaffee, 15);
+            a.RezeptList.Add(r);
+
+            r = new Rezept("Cappuccino");
+            r.ZutatenListe.Add(Inhaltsstoff.Wasser, 5);
+            r.ZutatenListe.Add(Inhaltsstoff.Kaffee, 5);
+            r.ZutatenListe.Add(Inhaltsstoff.Milch, 5);
+            r.ZutatenListe.Add(Inhaltsstoff.Kakao, 5);
+            a.RezeptList.Add(r);
+
+            foreach (Behaelter b in a.BehaelterListe)
+            {
+                b.Fuellen();
+            }
+
+            return a;
+        }
     }
 
 }

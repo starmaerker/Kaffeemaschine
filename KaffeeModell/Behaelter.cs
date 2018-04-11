@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KaffeeModell
 {
-    public class Behaelter : IComparable
+    public class Behaelter : IComparable, INotifyPropertyChanged
     {
         #region Klassenvariablen (Felder) und Eingenschaften (Properties)
 
@@ -17,19 +18,24 @@ namespace KaffeeModell
         public int Volumen
         {
             get { return _volumen; }
-            set { _volumen = value; }
+            set { _volumen = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Volumen))); }
         }
 
         public int Fuellstand
         {
             get { return _fuellstand; }
-            private set { _fuellstand = value; }
+            private set { _fuellstand = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Fuellstand)));
+            }
         }
 
         public Inhaltsstoff Typ
         {
             get { return _typ; }
-            private set { _typ = value; }
+            private set { _typ = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Typ)));
+            }
         }
 
 
@@ -50,7 +56,8 @@ namespace KaffeeModell
         //todo Ereignisbehandlung 2: Ereignis deklarieren
         //event schränkt Zugriff auf invocation list ein
         public event BinLeerEventHandler  BinLeer;
-         
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #endregion
 
         #region Methoden
