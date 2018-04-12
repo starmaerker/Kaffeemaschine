@@ -12,10 +12,15 @@ namespace KaffeeModell
 
         public Dictionary<Inhaltsstoff, int> ZutatenListe { get; set; }
 
-        public Rezept(string name)
+        protected Rezept()
         {
-            this.Name = name;
             ZutatenListe = new Dictionary<Inhaltsstoff, int>();
+        }
+
+        public Rezept(string name)
+            : this()
+        {
+            this.Name = name;            
         }
 
     }

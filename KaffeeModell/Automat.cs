@@ -18,8 +18,10 @@ namespace KaffeeModell
             RezeptList = new List<Rezept>();
         }
 
-        public string Zubereiten(string rezeptName)
+        public virtual string  Zubereiten(string rezeptName, out bool erledigt)
         {
+            erledigt = false;
+
             Rezept gewuenschtesRezept = 
             RezeptList.Where(r => r.Name == rezeptName)
                 .FirstOrDefault();
@@ -30,7 +32,6 @@ namespace KaffeeModell
             }
 
             //Überprüfen, ob für alle Zutaten ein passender Behälter mit genügend Inhalt vorhanden ist.
-
 
             bool alleZutatenInAusreichenderMengeVorhanden =
             gewuenschtesRezept.ZutatenListe
@@ -48,6 +49,8 @@ namespace KaffeeModell
                     .FirstOrDefault(b => b.Typ == zutat.Key)?
                     .Entnehmen(zutat.Value);
             }
+
+            erledigt = true;
 
             return $"{rezeptName} bereit.";
         }

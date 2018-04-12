@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KaffeeWpf"
         mc:Ignorable="d"
-        Title="Kaffeeautomat" Height="400" Width="600" Loaded="Window_Loaded">
+        Title="Kaffeeautomat" Height="600" Width="800" Loaded="Window_Loaded">
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
-            <Button Name="buttonSpeichern" Content="Speichern"></Button>
-            <Button Name="buttonLaden" Content="Laden"></Button>
+            <Button Name="buttonSpeichern" Content="Speichern" Click="buttonSpeichern_Click"></Button>
+            <Button Name="buttonLaden" Content="Laden" Click="buttonLaden_Click"></Button>
+            <CheckBox Name="checkBoxAutoRefill" Content="Autorefill" Checked="checkBoxAutoRefill_Checked" Unchecked="checkBoxAutoRefill_Unchecked" ></CheckBox>
 
         </ToolBar>
         <ItemsControl Name="itemsControlBehaelter" DockPanel.Dock="Top">
@@ -22,13 +23,24 @@
                 <DataTemplate>
                     <Canvas Width="100" Height="150" Margin="4">
                         <Rectangle Width="100" Height="{Binding Volumen}" Canvas.Bottom="20" Stroke="Black"></Rectangle>
-                        <Rectangle Width="100" Height="{Binding Fuellstand}" Canvas.Bottom="20" Stroke="Black">
+                        <Rectangle Width="100" Height="{Binding Fuellstand, NotifyOnTargetUpdated=True}" Canvas.Bottom="20" Stroke="Black">
                             <Rectangle.Fill>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#FF030A21" Offset="0"/>
                                     <GradientStop Color="#FF6181EC" Offset="0.835"/>
                                 </LinearGradientBrush>
                             </Rectangle.Fill>
+                            <Rectangle.Triggers>
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                             From="{Binding Fuellstand}"
+                                                             Duration="0:0:0.5"></DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Rectangle.Triggers>
                         </Rectangle>
                         <TextBlock Text="{Binding Typ}" Canvas.Bottom="0"></TextBlock>
                     </Canvas>

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KaffeeModell
 {
+    [DataContract]
     public class Behaelter : IComparable, INotifyPropertyChanged
     {
         #region Klassenvariablen (Felder) und Eingenschaften (Properties)
 
         private int _volumen;
         private int _fuellstand;
-        private Inhaltsstoff _typ;        
+        private Inhaltsstoff _typ;
 
+        [DataMember]
         public int Volumen
         {
             get { return _volumen; }
@@ -22,6 +25,7 @@ namespace KaffeeModell
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Volumen))); }
         }
 
+        [DataMember]
         public int Fuellstand
         {
             get { return _fuellstand; }
@@ -30,6 +34,7 @@ namespace KaffeeModell
             }
         }
 
+        [DataMember]
         public Inhaltsstoff Typ
         {
             get { return _typ; }
@@ -43,7 +48,16 @@ namespace KaffeeModell
 
         #region Kontruktoren
 
+        /// <summary>
+        /// Parameterloser Kontruktor für Serializer
+        /// </summary>
+        protected Behaelter()
+        {
+
+        }
+
         public Behaelter(Inhaltsstoff typ, int volumen = 100)
+            : this()
         {
             this.Typ = typ;
             this.Volumen = volumen;

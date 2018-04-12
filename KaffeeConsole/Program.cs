@@ -11,7 +11,9 @@ namespace KaffeeConsole
     {
         static void Main(string[] args)
         {
-            Modul4Demos();
+            Modul5Demos();
+            
+            //Modul4Demos();
 
             //Modul3Demos();
 
@@ -28,16 +30,23 @@ namespace KaffeeConsole
 
         }
 
-        
+        private static void Modul5Demos()
+        {
+            AutomatMitBezahlung ab1 = new AutomatMitBezahlung();
+            Console.WriteLine(ab1.Zubereiten("Schoko", out bool erledigt));
+            Console.WriteLine(ab1.Zubereiten("Kaffee", out erledigt));
+
+            
+        }
 
         private static void Modul4Demos()
         {
             Automat a1 = Automat.ErstelleStandardAutomat();
-            Console.WriteLine(a1.Zubereiten("Kakao"));
-            Console.WriteLine(a1.Zubereiten("Kaffee"));
-            Console.WriteLine(a1.Zubereiten("Espresso"));
-            Console.WriteLine(a1.Zubereiten("Milchkaffee"));
-            Console.WriteLine(a1.Zubereiten("Cappuccino"));
+            Console.WriteLine(a1.Zubereiten("Kakao", out bool erledigt));
+            Console.WriteLine(a1.Zubereiten("Kaffee", out erledigt));
+            Console.WriteLine(a1.Zubereiten("Espresso", out erledigt));
+            Console.WriteLine(a1.Zubereiten("Milchkaffee", out erledigt));
+            Console.WriteLine(a1.Zubereiten("Cappuccino", out erledigt));
             Console.WriteLine();
 
             //Behaelter[] behaelterListe = new Behaelter[3];
