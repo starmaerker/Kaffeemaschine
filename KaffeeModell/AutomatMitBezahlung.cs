@@ -10,7 +10,7 @@ namespace KaffeeModell
     {
         public decimal GeldEinwurf { get; set; }
 
-        public override string Zubereiten(string rezeptName, out bool erledigt)
+        public override string Zubereiten(string rezeptName, out bool erledigt, IProgress<int> progress)
         {
             erledigt = false;
 

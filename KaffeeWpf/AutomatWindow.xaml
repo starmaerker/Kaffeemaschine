@@ -63,7 +63,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
+        <ProgressBar Name="progressBar" DockPanel.Dock="Bottom" Height="20"></ProgressBar>
         <TextBlock Name="textBlockAusgabe" Text="Automat ist bereit" Background="#FF190E8D" Foreground="#FFF9F5F5" FontSize="14" FontWeight="Bold" Padding="4"></TextBlock>
     </DockPanel>
 </Window>

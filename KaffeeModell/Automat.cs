@@ -18,8 +18,19 @@ namespace KaffeeModell
             RezeptList = new List<Rezept>();
         }
 
-        public virtual string  Zubereiten(string rezeptName, out bool erledigt)
+        public virtual Task<string> ZubereitenAsync(string rezeptName, IProgress<int> progress)
         {
+            Task<string> task = Task.Run<string>(() => {            
+                return Zubereiten(rezeptName, out bool erledigtTemp, progress);              
+              
+            });
+            return task;
+        }
+
+        public virtual string  Zubereiten(string rezeptName, out bool erledigt, IProgress<int> progress = null)
+        {
+            progress?.Report(0);
+
             erledigt = false;
 
             Rezept gewuenschtesRezept = 
@@ -30,6 +41,9 @@ namespace KaffeeModell
             {
                 return $"{rezeptName} leider nicht verfügbar";
             }
+
+            Task.Delay(500).Wait();
+            progress?.Report(20);
 
             //Überprüfen, ob für alle Zutaten ein passender Behälter mit genügend Inhalt vorhanden ist.
 
@@ -43,6 +57,9 @@ namespace KaffeeModell
                 return $"Nicht alle Zutaten für {rezeptName} vorhanden";
             }
 
+            Task.Delay(500).Wait();
+            progress?.Report(40);
+
             foreach (KeyValuePair<Inhaltsstoff, int> zutat in gewuenschtesRezept.ZutatenListe)
             {
                 BehaelterListe
@@ -51,6 +68,10 @@ namespace KaffeeModell
             }
 
             erledigt = true;
+
+            Task.Delay(1500).Wait();
+            progress?.Report(100);
+
 
             return $"{rezeptName} bereit.";
         }

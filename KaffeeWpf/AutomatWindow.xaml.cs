@@ -50,10 +50,27 @@ namespace KaffeeWpf
             }
         }
 
-        private void buttonZubereiten_Click(object sender, RoutedEventArgs e)
+        //private void buttonZubereiten_Click(object sender, RoutedEventArgs e)
+        //{
+        //    textBlockAusgabe.Text += Environment.NewLine +
+        //    _automat.Zubereiten(((Button)sender).Content.ToString(), out bool erledigt);
+        //}
+
+        private async void buttonZubereiten_Click(object sender, RoutedEventArgs e)
         {
-            textBlockAusgabe.Text += Environment.NewLine +
-            _automat.Zubereiten(((Button)sender).Content.ToString(), out bool erledigt);
+            //async Variante
+            Button button = (Button)sender;
+            button.IsEnabled = false;
+            //progressBar.IsIndeterminate = true;
+
+            Progress<int> progress = new Progress<int>(wert => progressBar.Value = wert);
+
+            string ergebnis = await _automat.ZubereitenAsync(button.Content.ToString(), progress);
+            textBlockAusgabe.Text += Environment.NewLine + ergebnis;
+
+            //progressBar.IsIndeterminate = false;
+
+            button.IsEnabled = true;
         }
 
         private void checkBoxAutoRefill_Checked(object sender, RoutedEventArgs e)
